@@ -4,14 +4,169 @@
     width: 100%;
     min-height: 100vh;
     background-color: #F7F8FD;
-    padding-top: 150px;
+    padding-top: 120px;
 
     &-container {
         width: 100%;
         max-width: 1100px;
         margin: auto;
         min-height: inherit;
-        border: 1px solid darkblue;
+        display: flex;
+        gap: 50px;
+
+        aside {
+            width: 100%;
+            max-width: 280px;
+            min-height: 500px;
+
+            .company-name-section {
+                width: 100%;
+                height: 140px;
+                border-radius: 10px;
+                background-image: url('../../../public/starter-code/assets/suggestions/desktop/background-header.png');
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 20px;
+                box-sizing: border-box;
+                color: white;
+
+                h1, p {
+                    margin: 0;
+                }
+
+            }
+
+            .features-section {
+                width: 100%;
+                min-height: 150px;
+                background: white;
+                border-radius: 10px;
+                margin-top: 25px;
+                padding: 10px 40px 30px 20px;
+                box-sizing: border-box;
+
+                ul {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 10px;
+                    padding: 0;
+
+                    li {
+                        list-style-type: none;
+                        padding: 10px;
+                        background-color: #F2F4FF;
+                        color: #4661E6;
+                        border-radius: 10px;
+                        font-size: .7em;
+                        text-align: center;
+                        font-weight: bold;
+                        cursor: pointer;
+                    }
+
+                }
+
+
+            }
+
+            .roadmap {
+                width: 100%;
+                min-height: 150px;
+                background: white;
+                border-radius: 10px;
+                margin-top: 25px;
+                padding: 10px 20px;
+                box-sizing: border-box;
+
+                .section-name {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    
+                    h1 {
+                        margin: 0;
+                    }
+
+                    a {
+                        font-size: .9em;
+                        color: #4661E6;
+                        font-weight: bold;
+                    }
+                }
+
+                .roadmap-categories {
+
+                    ul {
+                        padding: 0 10px;
+                        
+                        div {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            
+                        }
+                        
+                        li {
+                            list-style-type: none;
+                            // margin-bottom: 10px;
+                        }
+
+                        li::before {
+                            content: "\2022";
+                            // color: blue;
+                            font-weight: bold;
+                            display: inline-block; 
+                            width: 1em;
+                            font-size: 20px;
+                            margin-left: -10px; 
+                        }
+
+                        span {
+                            font-weight: bold;
+                            color: #647196;
+                        }
+
+                    }
+
+                    .planned {
+
+                        li::before {
+                            color: #F49F85 !important; 
+                        }
+
+                    }
+
+                    .in-progress {
+
+                        li::before {
+                            color: #AD1FEA !important;
+                        }
+
+                    }
+                    .live {
+
+                        li::before {
+                            color: #62BCFA !important;
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        .feedback-feed {
+            width: 100%;
+            max-width: 800;
+            min-height: 700px;
+            border: 2px solid springgreen;
+        }
+
     }
 
 }

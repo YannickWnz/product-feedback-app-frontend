@@ -120,7 +120,7 @@ export const Home = () => {
                         <div className="feed-first-section">
                             <div className="votes-count">
                                 <img src="../starter-code/assets/shared/icon-arrow-up.svg" alt="" />
-                                <span>6</span>
+                                <span>999</span>
                             </div>
                             <div className="suggestion-details">
                                 <h1>Add tags for solutions</h1>

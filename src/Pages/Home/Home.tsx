@@ -130,7 +130,48 @@ export const Home = () => {
                                 </ul>
                             </div>
                         </div>
-                        <div className="comments-number"></div>
+                        <div className="comments-number">
+                            <img src="../starter-code/assets/shared/icon-comments.svg" alt="" />
+                            <span>2</span>
+                        </div>
+                    </div>
+                    <div className="feed-section">
+                        <div className="feed-first-section">
+                            <div className="votes-count">
+                                <img src="../starter-code/assets/shared/icon-arrow-up.svg" alt="" />
+                                <span>1.1k</span>
+                            </div>
+                            <div className="suggestion-details">
+                                <h1>Add tags for solutions</h1>
+                                <p>Easier to search for solutions based on specific stack</p>
+                                <ul>
+                                    <li>Enhancement</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div className="comments-number">
+                            <img src="../starter-code/assets/shared/icon-comments.svg" alt="" />
+                            <span>130</span>
+                        </div>
+                    </div>
+                    <div className="feed-section">
+                        <div className="feed-first-section">
+                            <div className="votes-count">
+                                <img src="../starter-code/assets/shared/icon-arrow-up.svg" alt="" />
+                                <span>20</span>
+                            </div>
+                            <div className="suggestion-details">
+                                <h1>Add tags for solutions</h1>
+                                <p>Easier to search for solutions based on specific stack</p>
+                                <ul>
+                                    <li>Bug</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div className="comments-number">
+                            <img src="../starter-code/assets/shared/icon-comments.svg" alt="" />
+                            <span>4</span>
+                        </div>
                     </div>
                 </div>
             </div>

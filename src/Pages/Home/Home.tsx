@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import {Link} from 'react-router-dom'
 import './Home.scss'
+import data from '../../data.json'
 
 export const Home = () => {
+
+    // console.log(data)
+
+    let requests = data.productRequests
+
 
     const [isSelected, setIsSelected] = useState<boolean>(false)
     const [isFeatureSelected, setIsFeatureSelected] = useState<boolean>(false)
@@ -12,6 +18,8 @@ export const Home = () => {
     const features = ['All', 'UI', 'UX', 'Enhancement', 'Bug', 'Feature']
 
     const [selectedFeature, setSelectedFeature] = useState(features[0]);
+
+    const [isUpvoted, setIsUpvoted] = useState<boolean>(false)
 
     const suggestionsCount: number = 19
 
@@ -36,6 +44,10 @@ export const Home = () => {
         localStorage.setItem('selectedFeature', feature)
 
     }
+    
+    function userUpvote( upvote: number,   ) {
+
+    }
 
 
 
@@ -49,14 +61,6 @@ export const Home = () => {
                         <p>Feedback Board</p>
                     </div>
                     <div className="features-section">
-                        {/* <ul>
-                            <li>All</li>
-                            <li>UI</li>
-                            <li>UX</li>
-                            <li>Enhancement</li>
-                            <li>Bug</li>
-                            <li>Feature</li>
-                        </ul> */}
 
                         <ul>
                             {features.length > 0 && features.map((feature, index) => (
@@ -116,7 +120,36 @@ export const Home = () => {
                         </div>
 
                     </nav>
-                    <div className="feed-section">
+
+                    {requests.length > 0 && requests.map((data,index) => {
+                        return (
+                            <div className="feed-section">
+                                <div className="feed-first-section">
+                                    <div className="votes-count">
+                                        <img src="../starter-code/assets/shared/icon-arrow-up.svg" alt="" />
+                                        <span
+                                            onClick={() => {
+                                                console.log(data.upvotes)
+                                            }}
+                                        >{data.upvotes}</span>
+                                    </div>
+                                    <div className="suggestion-details">
+                                        <h1>{data.title}</h1>
+                                        <p>{data.description}</p>
+                                        <ul>
+                                            <li>{data.category}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div className="comments-number">
+                                    <img src="../starter-code/assets/shared/icon-comments.svg" alt="" />
+                                    <span>{data.comments?.length}</span>
+                                </div>
+                            </div>
+                        )
+                    })}
+
+                    {/* <div className="feed-section">
                         <div className="feed-first-section">
                             <div className="votes-count">
                                 <img src="../starter-code/assets/shared/icon-arrow-up.svg" alt="" />
@@ -134,45 +167,7 @@ export const Home = () => {
                             <img src="../starter-code/assets/shared/icon-comments.svg" alt="" />
                             <span>2</span>
                         </div>
-                    </div>
-                    <div className="feed-section">
-                        <div className="feed-first-section">
-                            <div className="votes-count">
-                                <img src="../starter-code/assets/shared/icon-arrow-up.svg" alt="" />
-                                <span>1.1k</span>
-                            </div>
-                            <div className="suggestion-details">
-                                <h1>Add tags for solutions</h1>
-                                <p>Easier to search for solutions based on specific stack</p>
-                                <ul>
-                                    <li>Enhancement</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className="comments-number">
-                            <img src="../starter-code/assets/shared/icon-comments.svg" alt="" />
-                            <span>130</span>
-                        </div>
-                    </div>
-                    <div className="feed-section">
-                        <div className="feed-first-section">
-                            <div className="votes-count">
-                                <img src="../starter-code/assets/shared/icon-arrow-up.svg" alt="" />
-                                <span>20</span>
-                            </div>
-                            <div className="suggestion-details">
-                                <h1>Add tags for solutions</h1>
-                                <p>Easier to search for solutions based on specific stack</p>
-                                <ul>
-                                    <li>Bug</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className="comments-number">
-                            <img src="../starter-code/assets/shared/icon-comments.svg" alt="" />
-                            <span>4</span>
-                        </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </section>

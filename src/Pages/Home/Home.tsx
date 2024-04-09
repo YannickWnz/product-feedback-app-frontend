@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import {Link} from 'react-router-dom'
 import './Home.scss'
-import data from '../../data.json'
+import jsonData from '../../data.json'
+import { isConstructorDeclaration } from 'typescript'
 
 export const Home = () => {
 
     // console.log(data)
 
-    let requests = data.productRequests
+    let requests = jsonData.productRequests
 
 
     const [isSelected, setIsSelected] = useState<boolean>(false)
@@ -18,6 +19,8 @@ export const Home = () => {
     const features = ['All', 'UI', 'UX', 'Enhancement', 'Bug', 'Feature']
 
     const [selectedFeature, setSelectedFeature] = useState(features[0]);
+
+    const [fetchedData, setfetchedData] = useState(jsonData.productRequests)
 
     const [isUpvoted, setIsUpvoted] = useState<boolean>(false)
 
@@ -45,9 +48,54 @@ export const Home = () => {
 
     }
     
-    function userUpvote( upvote: number,   ) {
+    // console.log(fetchedData.productRequests[0].category)
+
+    function userUpvote( upvote: number,   ) {}
+
+    function filterCategory(category: string) {
+
+        let result = jsonData.productRequests.filter((data) => data.category === category )
+
+        setfetchedData(result)
 
     }
+
+    function sortBy(a: string) {
+
+        switch (a.toLowerCase()) {
+            case 'most upvotes':
+                let sortByMostUpvotes = [...fetchedData].sort((a, b) => b.upvotes - a.upvotes);
+                setfetchedData(sortByMostUpvotes)
+                break;
+            case 'least upvotes':
+                let sortByLeastUpvotes = [...fetchedData].sort((a, b) => a.upvotes - b.upvotes);
+                setfetchedData(sortByLeastUpvotes)
+                break;
+            case 'least comments':
+                const sortByLeastComments = [...fetchedData].sort((a, b) => {
+                    const commentsA = a.comments ? a.comments.length : 0;
+                    const commentsB = b.comments ? b.comments.length : 0;
+                    return commentsA - commentsB;
+                });
+                setfetchedData(sortByLeastComments);
+                break
+            case 'most comments':
+                const sortByMostComments = [...fetchedData].sort((a, b) => {
+                    const commentsA = a.comments ? a.comments.length : 0;
+                    const commentsB = b.comments ? b.comments.length : 0;
+                    return commentsB - commentsA;
+                });
+                setfetchedData(sortByMostComments);
+                break
+            default:
+                break;
+        }
+
+    }
+
+    useEffect(() => {
+    }, [])
+
 
 
 
@@ -107,7 +155,14 @@ export const Home = () => {
                             </div>
                             <div className="filter-section">
                                 <label htmlFor="filters">Sort by:</label>
-                                <select name="filters" id="">
+                                <select 
+                                name="filters"
+                                id=""
+                                onChange={(e) => {
+                                    // console.log('boy been changing', e.target.value)
+                                    sortBy(e.target.value)
+                                }}
+                                >
                                     <option value="Most upvotes">Most upvotes</option>
                                     <option value="Least upvotes">Least upvotes</option>
                                     <option value="Most comments">Most comments</option>
@@ -121,7 +176,7 @@ export const Home = () => {
 
                     </nav>
 
-                    {requests.length > 0 && requests.map((data,index) => {
+                    {fetchedData.length > 0 && fetchedData.map((data,index) => {
                         return (
                             <div className="feed-section">
                                 <div className="feed-first-section">
@@ -143,7 +198,7 @@ export const Home = () => {
                                 </div>
                                 <div className="comments-number">
                                     <img src="../starter-code/assets/shared/icon-comments.svg" alt="" />
-                                    <span>{data.comments?.length}</span>
+                                    {<span>{data.comments ? data.comments.length : '0'}</span>}
                                 </div>
                             </div>
                         )

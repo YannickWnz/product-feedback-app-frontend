@@ -4,6 +4,11 @@ import './Home.scss'
 import jsonData from '../../data.json'
 import { isConstructorDeclaration } from 'typescript'
 
+interface voteBtn {
+    id: number,
+    voteCount: number
+}
+
 export const Home = () => {
 
     // console.log(data)
@@ -20,6 +25,7 @@ export const Home = () => {
 
     const [selectedFeature, setSelectedFeature] = useState(features[0]);
 
+    // const [fetchedData, setfetchedData] = useState(jsonData.productRequests)
     const [fetchedData, setfetchedData] = useState(jsonData.productRequests)
 
     const [isUpvoted, setIsUpvoted] = useState<boolean>(false)
@@ -38,6 +44,10 @@ export const Home = () => {
     if(selectedFeatureFromLocalStorage) setSelectedFeature(selectedFeatureFromLocalStorage)
 
     }, [selectedFeature])
+
+    useEffect(() => {
+        // setfetchedData(jsonData.productRequests)
+    }, [])
 
     const selectFeature = (feature: string): void => {
 
@@ -93,10 +103,12 @@ export const Home = () => {
 
     }
 
-    useEffect(() => {
-    }, [])
+    function handleUpvote(id: number, voteCount: number) {
+
+        let dataId = id - 1
 
 
+    }
 
 
 
@@ -184,7 +196,9 @@ export const Home = () => {
                                         <img src="../starter-code/assets/shared/icon-arrow-up.svg" alt="" />
                                         <span
                                             onClick={() => {
-                                                console.log(data.upvotes)
+                                                // console.log(data, data.id, 'data id:', fetchedData[data.id])
+                                                handleUpvote(data.id, data.upvotes)
+                                                // handleUpvote(data)
                                             }}
                                         >{data.upvotes}</span>
                                     </div>

@@ -107,7 +107,6 @@ export const Home = () => {
 
         let dataId = id - 1
 
-
     }
 
 
@@ -117,7 +116,7 @@ export const Home = () => {
             <div className="home-container">
                 <aside className="sidebar">
                     <div className="company-name-section">
-                        <h1>Frontend Mentor</h1>
+                        <h1>Yannick's App</h1>
                         <p>Feedback Board</p>
                     </div>
                     <div className="features-section">
@@ -198,6 +197,7 @@ export const Home = () => {
                                             onClick={() => {
                                                 // console.log(data, data.id, 'data id:', fetchedData[data.id])
                                                 handleUpvote(data.id, data.upvotes)
+                                                console.log(index, fetchedData[data.id - 1])
                                                 // handleUpvote(data)
                                             }}
                                         >{data.upvotes}</span>
